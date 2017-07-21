@@ -1,20 +1,25 @@
 module Fakebook
   module Core
     class User
-      attr_accessor :username, :friends, :payments
+      attr_accessor :username, :friends, :mapper
 
-      def initialize(args=nil)
+      def initialize(args, mapper=:FIXME)
         @username = args[:username]
         @friends = create_friend_list(args[:friends])
         @payments = args[:payments] || []
+        @mapper = mapper
       end
 
       def create_friend_list(friends)
-        friends.nil? ? [] : friends.reduce([]){|l, f| l.push(User.new(f))}
+        friends.nil? ? [] : friends.reduce([]){|l, f| l.push(User.new(f, mapper))}
       end
 
       def add_payment(payment)
-        @payments.push(payment)
+        mapper.add_payment(self, payment)
+      end
+
+      def payments
+        mapper.payments(self)
       end
     end
   end
