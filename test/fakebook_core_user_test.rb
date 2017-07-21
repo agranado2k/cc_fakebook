@@ -20,4 +20,16 @@ class UserTest < Minitest::Test
     assert_equal user.friends.size, 2
     assert_equal user.friends.first.username, "f1"
   end
+
+  def test_add_payment
+    value = 11.12
+    userA = Fakebook::Core::User.new({username: "userA"})
+    userB = Fakebook::Core::User.new({username: "userB"})
+    payment = Fakebook::Core::Payment.new(value, userB)
+
+    userA.add_payment(payment)
+
+    assert_equal userA.payments.size, 1
+    assert_equal userA.payments.first, payment
+  end
 end
