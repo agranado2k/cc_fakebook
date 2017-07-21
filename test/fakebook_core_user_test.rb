@@ -1,36 +1,21 @@
 require "test_helper"
 
-module Fakebook
-  module Core
-    class User
-      attr_accessor :username, :friends
-
-      def initialize(username, friends=nil)
-        @username = username
-        @friends = create_friend_list(friends)
-      end
-
-      def create_friend_list(friends)
-        friends.nil? ? [] : friends.reduce([]){|l, f| l.push(User.new(f[:username]))}
-      end
-    end
-  end
-end
-
 class UserTest < Minitest::Test
   def test_create_user
+    args = {username: "username"}
     username = "username"
 
-    user = Fakebook::Core::User.new(username)
+    user = Fakebook::Core::User.new(args)
 
     assert_equal user.username, username
   end
 
   def test_create_user_with_friends
+    args = {username: "username", friends: [{username: "f1"},{username: "f2"}]}
     username = "username"
     friends = [{username: "f1"},{username: "f2"}]
 
-    user = Fakebook::Core::User.new(username, friends)
+    user = Fakebook::Core::User.new(args)
 
     assert_equal user.friends.size, 2
     assert_equal user.friends.first.username, "f1"

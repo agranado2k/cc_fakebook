@@ -3,13 +3,13 @@ module Fakebook
     class User
       attr_accessor :username, :friends
 
-      def initialize(username, friends=nil)
-        @username = username
-        @friends = create_friend_list(friends)
+      def initialize(args=nil)
+        @username = args[:username]
+        @friends = create_friend_list(args[:friends])
       end
 
       def create_friend_list(friends)
-        friends.nil? ? [] : friends.reduce([]){|l, f| l.push(User.new(f[:username]))}
+        friends.nil? ? [] : friends.reduce([]){|l, f| l.push(User.new(f))}
       end
     end
   end
