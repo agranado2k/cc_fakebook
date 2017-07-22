@@ -33,14 +33,14 @@ class CoolPayTest < Minitest::Test
     refute_nil response[:token]
   end
 
-  def test_create_recipient_with_success
-    #username = "get_api_test"
+  def test_get_recipient_by_name_with_success
+    username = "get_api_test"
 
-    #response = @cool_pay.get_or_create_recipient(username)
+    response = @cool_pay.get_or_create_recipient(username)
 
-    #refute_nil response[:success]
-    #refute_nil response[:success][:external_recipient_id]
-    #assert_equal "user_b", response[:success][:recipient_name]
+    refute_nil response[:success]
+    refute_nil response[:success][:external_recipient_id]
+    assert_equal "get_api_test", response[:success][:recipient_name]
   end
 
   def test_create_payment_with_success

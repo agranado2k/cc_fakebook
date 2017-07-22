@@ -16,9 +16,14 @@ module Fakebook
         url = "https://coolpay.herokuapp.com/api/recipients?name=#{name}"
         response = RestClient.get(url, headers={"Content-Type" => "application/json",
                                      Authorization: "Bearer #{token}"})
-        r = parse_response(response)
-        p "r: #{r}"
-        r.select{|r| r[:recipients][:name] == name}.first
+        create_recipient_response(parse_response(response))
+      end
+
+      def create_recipient_response(body)
+        {success: {
+          recipient_name: body[:recipients][:name],
+          external_recipient_id: body[:recipients][:id]
+        }}
       end
 
       def list_payments
@@ -39,7 +44,13 @@ module Fakebook
 
       def symbolize_keys(hash)
         hash.reduce({}) do |h, (k,v)|
-          h[k.to_sym] = (v.is_a?(Hash) ? symbolize_keys(v) : v)
+          h[k.to_sym] = if v.is_a?(Hash)
+                          symbolize_keys(v)
+                        elsif v.is_a?(Array)
+                          v.reduce([]){|result, v| symbolize_keys(v)}
+                        else
+                         v
+                        end
           h
         end
       end
