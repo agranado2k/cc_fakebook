@@ -13,6 +13,13 @@ module Fakebook
         user_a.add_payment(payment)
         user_a
       end
+
+      def list_payments(user, api)
+        api_response = api.list_payments(user.username)
+        api_response[:success].reduce([]) do |result, external_payment|
+          result << Payment.new(external_payment)
+        end
+      end
     end
   end
 end

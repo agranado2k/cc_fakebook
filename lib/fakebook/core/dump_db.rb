@@ -3,6 +3,10 @@ module Fakebook
     class DBDump
       @@users = {}
 
+      def initialize
+        @@users = {}
+      end
+
       def add_payment(user,payment)
         if @@users[user.username].nil?
           @@users[user.username] = {payments: []}
