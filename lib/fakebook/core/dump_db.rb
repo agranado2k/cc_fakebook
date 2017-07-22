@@ -1,6 +1,6 @@
 module Fakebook
   module Core
-    class DumpDB
+    class DBDump
       @@users = {}
 
       def add_payment(user,payment)
@@ -11,7 +11,7 @@ module Fakebook
       end
 
       def payments(user)
-        @@users[user.username][:payments]
+        @@users[user.username].nil? ? [] : @@users[user.username][:payments]
       end
     end
   end
