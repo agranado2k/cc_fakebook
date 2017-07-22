@@ -1,4 +1,5 @@
 require "test_helper"
+require "fakebook_gateway_api_gateway_interface_test"
 
 class APIGatewayDouble
   def create_payment(recipient, value)
@@ -16,21 +17,12 @@ class APIGatewayDouble
   end
 end
 
-class APIGatewayTest < Minitest::Test
-  def setup
-    @object = APIGatewayDouble.new
-  end
-
-  def test_implement_api_gateway_interface
-    assert_respond_to @object, :create_payment
-    assert_respond_to @object, :list_payments
-  end
-end
-
 class ActionTest < Minitest::Test
+  include ::APIGatewateyInterfaceTest
+
   def setup
     @db_dump = Fakebook::Core::DBDump.new
-    @api_gateway = APIGatewayDouble.new
+    @api_gateway = @object = APIGatewayDouble.new
   end
 
   def test_action_send_money_between_users
