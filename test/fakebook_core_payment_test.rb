@@ -10,5 +10,7 @@ class PaymentTest < Minitest::Test
 
     assert_equal payment.recipient, "userB"
     assert_equal payment.value, 10
+    assert_nil payment.external_payment_id
+    assert_nil payment.external_recipient_id
   end
 end
