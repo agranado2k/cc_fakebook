@@ -2,14 +2,14 @@ require "test_helper"
 
 class UserTest < Minitest::Test
   def setup
-    @dump_db = Fakebook::Core::DumpDB.new
+    @db_dump = Fakebook::Core::DBDump.new
   end
 
   def test_create_user
     args = {username: "username"}
     username = "username"
 
-    user = Fakebook::Core::User.new(args, @dump_db)
+    user = Fakebook::Core::User.new(args, @db_dump)
 
     assert_equal user.username, username
   end
@@ -19,17 +19,15 @@ class UserTest < Minitest::Test
     username = "username"
     friends = [{username: "f1"},{username: "f2"}]
 
-    user = Fakebook::Core::User.new(args, @dump_db)
+    user = Fakebook::Core::User.new(args, @db_dump)
 
     assert_equal user.friends.size, 2
     assert_equal user.friends.first.username, "f1"
   end
 
   def test_add_payment
-    value = 11.12
-    userA = Fakebook::Core::User.new({username: "userA"}, @dump_db)
-    userB = Fakebook::Core::User.new({username: "userB"}, @dump_db)
-    payment = Fakebook::Core::Payment.new(value, userB)
+    userA = Fakebook::Core::User.new({username: "userA"}, @db_dump)
+    payment = Fakebook::Core::Payment.new({value: 11.12, recipient: "userB"})
 
     userA.add_payment(payment)
 

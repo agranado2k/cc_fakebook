@@ -3,9 +3,9 @@ module Fakebook
     class Payment
       attr_accessor :value, :recipient
 
-      def initialize(value, recipient)
-        @value = value
-        @recipient = recipient
+      def initialize(args)
+        @value = args[:value]
+        @recipient = args[:recipient]
       end
     end
   end

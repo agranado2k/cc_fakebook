@@ -1,13 +1,14 @@
 require "test_helper"
 
 class PaymentTest < Minitest::Test
+  def setup
+    @db_dump = Fakebook::Core::DBDump.new
+  end
+
   def test_create_payment
-    value = 10
-    recipient = Fakebook::Core::User.new({username: "userB"})
+    payment = Fakebook::Core::Payment.new({value: 10, recipient: "userB"})
 
-    payment = Fakebook::Core::Payment.new(value, recipient)
-
-    assert_equal payment.recipient, recipient
+    assert_equal payment.recipient, "userB"
     assert_equal payment.value, 10
   end
 end
