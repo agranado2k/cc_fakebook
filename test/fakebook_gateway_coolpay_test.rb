@@ -73,15 +73,18 @@ class CoolPayTest < Minitest::Test
   end
 
   def test_create_payment_with_success
-    #username = "user_b"
-    #value = 12.56
-    #recipeint_id = ?
+    value = 12.56
+    recipient_name = "get_api_test"
+    recipeint_id = "20d411b7-7e12-4e45-b9d4-e390b492958a"
+    response = nil
 
-    #response = @cool_pay.create_payment(value, recipeint_id)
+    VCR.use_cassette("test_create_payment_with_success") do
+      response = @cool_pay.create_payment(value, recipeint_id, recipient_name)
+    end
 
-    #assert_equal 12.56, response[:success][:value]
-    #assert_equal "user_b", response[:success][:recipient]
-    #refute_nil response[:success][:external_payment_id]
-    #refute_nil response[:success][:external_recipient_id]
+    assert_equal "12.56", response[:success][:value]
+    assert_equal "get_api_test", response[:success][:recipient]
+    refute_nil response[:success][:external_payment_id]
+    refute_nil response[:success][:external_recipient_id]
   end
 end

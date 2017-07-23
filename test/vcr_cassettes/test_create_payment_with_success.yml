@@ -29,7 +29,7 @@ http_interactions:
       Server:
       - Cowboy
       Date:
-      - Sun, 23 Jul 2017 20:40:09 GMT
+      - Sun, 23 Jul 2017 20:40:07 GMT
       Content-Length:
       - '48'
       Content-Type:
@@ -39,20 +39,20 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
       X-Request-Id:
-      - 3d7b6894-6f11-4b84-b68a-81e12f73c587
+      - f981938c-a232-46c2-ab84-ee7518c9674d
       Via:
       - 1.1 vegur
     body:
       encoding: UTF-8
-      string: '{"token":"06e7a1b4-43f4-4d5b-bc9a-28ee0e57fc29"}'
+      string: '{"token":"2c61a5cf-6924-469a-94b1-a6a1efdfcc7d"}'
     http_version: 
-  recorded_at: Sun, 23 Jul 2017 20:40:09 GMT
+  recorded_at: Sun, 23 Jul 2017 20:40:07 GMT
 - request:
     method: post
-    uri: https://coolpay.herokuapp.com/api/recipients
+    uri: https://coolpay.herokuapp.com/api/payments
     body:
       encoding: UTF-8
-      string: '{"recipient":{"name":"some_name-2bae50bde340aee7555481f554d8714b"}}'
+      string: '{"payment":{"amount":12.56,"currency":"GBP","recipient_id":"20d411b7-7e12-4e45-b9d4-e390b492958a"}}'
     headers:
       Accept:
       - application/json
@@ -63,9 +63,9 @@ http_interactions:
       Content-Type:
       - application/json
       Authorization:
-      - Bearer 06e7a1b4-43f4-4d5b-bc9a-28ee0e57fc29
+      - Bearer 2c61a5cf-6924-469a-94b1-a6a1efdfcc7d
       Content-Length:
-      - '67'
+      - '99'
       Host:
       - coolpay.herokuapp.com
   response:
@@ -78,9 +78,9 @@ http_interactions:
       Server:
       - Cowboy
       Date:
-      - Sun, 23 Jul 2017 20:40:10 GMT
+      - Sun, 23 Jul 2017 20:40:08 GMT
       Content-Length:
-      - '111'
+      - '167'
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
@@ -88,14 +88,14 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
       X-Request-Id:
-      - c007aae3-f50b-4354-bf0f-1ded3e039418
+      - eaf80481-ee44-42b3-9b24-c7d13d3b9142
       Location:
-      - "/api/recipients/5b923b72-06b1-4fd0-a3dc-b86283c50036"
+      - "/api/payments/c6219d09-0b69-4997-b5ff-fea87b291132"
       Via:
       - 1.1 vegur
     body:
       encoding: UTF-8
-      string: '{"recipient":{"name":"some_name-2bae50bde340aee7555481f554d8714b","id":"5b923b72-06b1-4fd0-a3dc-b86283c50036"}}'
+      string: '{"payment":{"status":"processing","recipient_id":"20d411b7-7e12-4e45-b9d4-e390b492958a","id":"c6219d09-0b69-4997-b5ff-fea87b291132","currency":"GBP","amount":"12.56"}}'
     http_version: 
-  recorded_at: Sun, 23 Jul 2017 20:40:11 GMT
+  recorded_at: Sun, 23 Jul 2017 20:40:08 GMT
 recorded_with: VCR 3.0.3

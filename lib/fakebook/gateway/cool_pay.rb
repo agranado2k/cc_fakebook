@@ -5,8 +5,21 @@ module Fakebook
     end
 
     class CoolPay
-      def create_payment
-
+      def create_payment(value, recipient_id, recipient_name)
+        token = login("arthur", "68830AEF4DBFAD18")[:token]
+        url = "https://coolpay.herokuapp.com/api/payments"
+        body = {payment: {amount: value, currency: "GBP", recipient_id: recipient_id}}.to_json
+        headers =  {content_type: :json, accept: :json, Authorization: "Bearer #{token}"}
+        response = RestClient.post(url, body, headers)
+        body = parse_response(response.body)
+        {
+          success: {
+            value: body[:payment][:amount],
+            recipient: recipient_name,
+            external_payment_id: body[:payment][:id],
+            external_recipient_id: body[:payment][:recipient_id]
+          }
+        }
       end
 
       def get_or_create_recipient(name)
@@ -30,7 +43,7 @@ module Fakebook
       def create_recipient(name)
         token = login("arthur", "68830AEF4DBFAD18")[:token]
         url = "https://coolpay.herokuapp.com/api/recipients"
-        body = {recipient: {name: name}}
+        body = {recipient: {name: name}}.to_json
         headers =  {content_type: :json, accept: :json, Authorization: "Bearer #{token}"}
         response = RestClient.post(url, body, headers)
         body = parse_response(response.body)
