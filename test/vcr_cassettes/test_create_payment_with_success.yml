@@ -29,7 +29,7 @@ http_interactions:
       Server:
       - Cowboy
       Date:
-      - Sun, 23 Jul 2017 20:40:07 GMT
+      - Sun, 23 Jul 2017 21:07:21 GMT
       Content-Length:
       - '48'
       Content-Type:
@@ -39,14 +39,14 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
       X-Request-Id:
-      - f981938c-a232-46c2-ab84-ee7518c9674d
+      - 93a5125d-e5df-4b64-8031-3d0c4a381a3e
       Via:
       - 1.1 vegur
     body:
       encoding: UTF-8
-      string: '{"token":"2c61a5cf-6924-469a-94b1-a6a1efdfcc7d"}'
+      string: '{"token":"914deb49-e496-450d-b33f-691543cdf080"}'
     http_version: 
-  recorded_at: Sun, 23 Jul 2017 20:40:07 GMT
+  recorded_at: Sun, 23 Jul 2017 21:07:22 GMT
 - request:
     method: post
     uri: https://coolpay.herokuapp.com/api/payments
@@ -63,7 +63,7 @@ http_interactions:
       Content-Type:
       - application/json
       Authorization:
-      - Bearer 2c61a5cf-6924-469a-94b1-a6a1efdfcc7d
+      - Bearer 914deb49-e496-450d-b33f-691543cdf080
       Content-Length:
       - '99'
       Host:
@@ -78,7 +78,7 @@ http_interactions:
       Server:
       - Cowboy
       Date:
-      - Sun, 23 Jul 2017 20:40:08 GMT
+      - Sun, 23 Jul 2017 21:07:22 GMT
       Content-Length:
       - '167'
       Content-Type:
@@ -88,14 +88,14 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
       X-Request-Id:
-      - eaf80481-ee44-42b3-9b24-c7d13d3b9142
+      - 76b9b3f4-e5f4-4ac1-bce1-dac5c3ab8e1d
       Location:
-      - "/api/payments/c6219d09-0b69-4997-b5ff-fea87b291132"
+      - "/api/payments/81791d52-e109-4d9b-b121-5ea1eeaa1f46"
       Via:
       - 1.1 vegur
     body:
       encoding: UTF-8
-      string: '{"payment":{"status":"processing","recipient_id":"20d411b7-7e12-4e45-b9d4-e390b492958a","id":"c6219d09-0b69-4997-b5ff-fea87b291132","currency":"GBP","amount":"12.56"}}'
+      string: '{"payment":{"status":"processing","recipient_id":"20d411b7-7e12-4e45-b9d4-e390b492958a","id":"81791d52-e109-4d9b-b121-5ea1eeaa1f46","currency":"GBP","amount":"12.56"}}'
     http_version: 
-  recorded_at: Sun, 23 Jul 2017 20:40:08 GMT
+  recorded_at: Sun, 23 Jul 2017 21:07:23 GMT
 recorded_with: VCR 3.0.3

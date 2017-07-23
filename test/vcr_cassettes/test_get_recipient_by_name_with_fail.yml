@@ -29,7 +29,7 @@ http_interactions:
       Server:
       - Cowboy
       Date:
-      - Sun, 23 Jul 2017 20:40:11 GMT
+      - Sun, 23 Jul 2017 21:07:19 GMT
       Content-Length:
       - '48'
       Content-Type:
@@ -39,14 +39,14 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
       X-Request-Id:
-      - 966cb553-ee47-41be-ac91-780936f69c1d
+      - 2f1d9c9d-607b-4999-9a85-d63f4fe6ea57
       Via:
       - 1.1 vegur
     body:
       encoding: UTF-8
-      string: '{"token":"080eee26-d286-42e3-8563-9022c6a20375"}'
+      string: '{"token":"0a8e55a9-72e7-45a4-a077-d737420ac7b2"}'
     http_version: 
-  recorded_at: Sun, 23 Jul 2017 20:40:12 GMT
+  recorded_at: Sun, 23 Jul 2017 21:07:20 GMT
 - request:
     method: get
     uri: https://coolpay.herokuapp.com/api/recipients?name=unknown_name
@@ -63,7 +63,7 @@ http_interactions:
       Content-Type:
       - application/json
       Authorization:
-      - Bearer 080eee26-d286-42e3-8563-9022c6a20375
+      - Bearer 0a8e55a9-72e7-45a4-a077-d737420ac7b2
       Host:
       - coolpay.herokuapp.com
   response:
@@ -76,7 +76,7 @@ http_interactions:
       Server:
       - Cowboy
       Date:
-      - Sun, 23 Jul 2017 20:40:12 GMT
+      - Sun, 23 Jul 2017 21:07:20 GMT
       Content-Length:
       - '17'
       Content-Type:
@@ -86,12 +86,12 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
       X-Request-Id:
-      - 28313dff-daaa-418a-9038-384198d0d387
+      - db6597e0-0868-40aa-af23-b948c8beafe3
       Via:
       - 1.1 vegur
     body:
       encoding: UTF-8
       string: '{"recipients":[]}'
     http_version: 
-  recorded_at: Sun, 23 Jul 2017 20:40:13 GMT
+  recorded_at: Sun, 23 Jul 2017 21:07:21 GMT
 recorded_with: VCR 3.0.3

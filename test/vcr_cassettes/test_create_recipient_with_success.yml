@@ -29,7 +29,7 @@ http_interactions:
       Server:
       - Cowboy
       Date:
-      - Sun, 23 Jul 2017 20:40:09 GMT
+      - Sun, 23 Jul 2017 21:07:17 GMT
       Content-Length:
       - '48'
       Content-Type:
@@ -39,20 +39,20 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
       X-Request-Id:
-      - 3d7b6894-6f11-4b84-b68a-81e12f73c587
+      - '062957c6-4512-47cc-bffb-1e924d1c7e9c'
       Via:
       - 1.1 vegur
     body:
       encoding: UTF-8
-      string: '{"token":"06e7a1b4-43f4-4d5b-bc9a-28ee0e57fc29"}'
+      string: '{"token":"ac6d9ed9-b44c-4b02-bb5a-1c18b58cefdc"}'
     http_version: 
-  recorded_at: Sun, 23 Jul 2017 20:40:09 GMT
+  recorded_at: Sun, 23 Jul 2017 21:07:17 GMT
 - request:
     method: post
     uri: https://coolpay.herokuapp.com/api/recipients
     body:
       encoding: UTF-8
-      string: '{"recipient":{"name":"some_name-2bae50bde340aee7555481f554d8714b"}}'
+      string: '{"recipient":{"name":"some_name-2e02c8262327ce97484000598a89d75d"}}'
     headers:
       Accept:
       - application/json
@@ -63,7 +63,7 @@ http_interactions:
       Content-Type:
       - application/json
       Authorization:
-      - Bearer 06e7a1b4-43f4-4d5b-bc9a-28ee0e57fc29
+      - Bearer ac6d9ed9-b44c-4b02-bb5a-1c18b58cefdc
       Content-Length:
       - '67'
       Host:
@@ -78,7 +78,7 @@ http_interactions:
       Server:
       - Cowboy
       Date:
-      - Sun, 23 Jul 2017 20:40:10 GMT
+      - Sun, 23 Jul 2017 21:07:18 GMT
       Content-Length:
       - '111'
       Content-Type:
@@ -88,14 +88,14 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
       X-Request-Id:
-      - c007aae3-f50b-4354-bf0f-1ded3e039418
+      - 2f585e62-6db9-4555-a6d0-33f8fef58ac1
       Location:
-      - "/api/recipients/5b923b72-06b1-4fd0-a3dc-b86283c50036"
+      - "/api/recipients/228ab516-4e2a-49bc-bd01-b39944f0778b"
       Via:
       - 1.1 vegur
     body:
       encoding: UTF-8
-      string: '{"recipient":{"name":"some_name-2bae50bde340aee7555481f554d8714b","id":"5b923b72-06b1-4fd0-a3dc-b86283c50036"}}'
+      string: '{"recipient":{"name":"some_name-2e02c8262327ce97484000598a89d75d","id":"228ab516-4e2a-49bc-bd01-b39944f0778b"}}'
     http_version: 
-  recorded_at: Sun, 23 Jul 2017 20:40:11 GMT
+  recorded_at: Sun, 23 Jul 2017 21:07:19 GMT
 recorded_with: VCR 3.0.3

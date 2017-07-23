@@ -82,20 +82,7 @@ module Fakebook
       end
 
       def parse_response(body)
-        symbolize_keys(JSON.parse(body))
-      end
-
-      def symbolize_keys(hash)
-        hash.reduce({}) do |h, (k,v)|
-          h[k.to_sym] = if v.is_a?(Hash)
-                          symbolize_keys(v)
-                        elsif v.is_a?(Array)
-                          v.reduce([]){|result, v| result << symbolize_keys(v)}
-                        else
-                         v
-                        end
-          h
-        end
+        JSON.parse(body).symbolize_keys
       end
     end
   end

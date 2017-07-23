@@ -11,7 +11,7 @@ class CoolPayTest < Minitest::Test
   def test_symbolize_keys_with_nested_hash
     json = {"a" => {"b" => "c"}}
 
-    result = @cool_pay.symbolize_keys(json)
+    result = json.symbolize_keys
 
     assert_equal result, {a: {b: "c"}}
   end
@@ -19,7 +19,7 @@ class CoolPayTest < Minitest::Test
   def test_symbolize_keys_with_array
     json = {"a" => [{"b" => "c"}]}
 
-    result = @cool_pay.symbolize_keys(json)
+    result = json.symbolize_keys
 
     assert_equal result, {a: [{b: "c"}]}
   end
