@@ -27,16 +27,22 @@ class CoolPayTest < Minitest::Test
   def test_get_auth_token_from_login
     username = "arthur"
     apikey = "68830AEF4DBFAD18"
+    response = nil
 
-    response = @cool_pay.login(username, apikey)
+    VCR.use_cassette("test_get_auth_token_from_login") do
+      response = @cool_pay.login(username, apikey)
+    end
 
     refute_nil response[:token]
   end
 
   def test_get_recipient_by_name_with_success
     username = "get_api_test"
+    response = nil
 
-    response = @cool_pay.get_recipient(username)
+    VCR.use_cassette("test_get_recipient_by_name_with_success") do
+      response = @cool_pay.get_recipient(username)
+    end
 
     refute_nil response[:success]
     refute_nil response[:success][:external_recipient_id]
@@ -47,18 +53,23 @@ class CoolPayTest < Minitest::Test
     username = "unknown_name"
 
     assert_raises Fakebook::Gateway::RecipientNotFound do
-      @cool_pay.get_recipient(username)
+      VCR.use_cassette("test_get_recipient_by_name_with_fail") do
+        @cool_pay.get_recipient(username)
+      end
     end
   end
 
   def test_create_recipient_with_success
     username = "some_name-#{SecureRandom.hex}"
+    response = nil
 
-    response = @cool_pay.create_recipient(username)
+    VCR.use_cassette("test_create_recipient_with_success") do
+      response = @cool_pay.create_recipient(username)
+    end
 
     refute_nil response[:success]
     refute_nil response[:success][:external_recipient_id]
-    assert_equal username, response[:success][:recipient_name]
+    refute_nil username, response[:success][:recipient_name]
   end
 
   def test_create_payment_with_success

@@ -29,7 +29,7 @@ module Fakebook
 
       def create_recipient(name)
         token = login("arthur", "68830AEF4DBFAD18")[:token]
-        url = "https://coolpay.herokuapp.com/api/recipients?name=#{name}"
+        url = "https://coolpay.herokuapp.com/api/recipients"
         body = {recipient: {name: name}}
         headers =  {content_type: :json, accept: :json, Authorization: "Bearer #{token}"}
         response = RestClient.post(url, body, headers)

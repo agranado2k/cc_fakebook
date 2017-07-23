@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://coolpay.herokuapp.com/api/login
+    body:
+      encoding: UTF-8
+      string: '{"username":"arthur","apikey":"68830AEF4DBFAD18"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '49'
+      Host:
+      - coolpay.herokuapp.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - Cowboy
+      Date:
+      - Sun, 23 Jul 2017 20:22:33 GMT
+      Content-Length:
+      - '48'
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Request-Id:
+      - 953e29e2-6b8b-4237-94c5-27e25cf66a0d
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: '{"token":"42dfc248-f449-4a95-8fa3-a244517c183b"}'
+    http_version: 
+  recorded_at: Sun, 23 Jul 2017 20:22:34 GMT
+recorded_with: VCR 3.0.3

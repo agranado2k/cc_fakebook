@@ -1,0 +1,97 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://coolpay.herokuapp.com/api/login
+    body:
+      encoding: UTF-8
+      string: '{"username":"arthur","apikey":"68830AEF4DBFAD18"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '49'
+      Host:
+      - coolpay.herokuapp.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - Cowboy
+      Date:
+      - Sun, 23 Jul 2017 20:22:24 GMT
+      Content-Length:
+      - '48'
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Request-Id:
+      - 1e464321-cf8d-4373-859c-48b746ac59d6
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: '{"token":"738b0411-8930-4eeb-9a8b-37c76f2150dd"}'
+    http_version: 
+  recorded_at: Sun, 23 Jul 2017 20:22:24 GMT
+- request:
+    method: get
+    uri: https://coolpay.herokuapp.com/api/recipients?name=unknown_name
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer 738b0411-8930-4eeb-9a8b-37c76f2150dd
+      Host:
+      - coolpay.herokuapp.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - Cowboy
+      Date:
+      - Sun, 23 Jul 2017 20:22:30 GMT
+      Content-Length:
+      - '17'
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Request-Id:
+      - e66feaed-140a-4830-a707-defb2ee0f2b4
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: '{"recipients":[]}'
+    http_version: 
+  recorded_at: Sun, 23 Jul 2017 20:22:30 GMT
+recorded_with: VCR 3.0.3
