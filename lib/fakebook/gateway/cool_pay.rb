@@ -7,6 +7,13 @@ module Fakebook
     class CoolPay
       BASE_URL = "https://coolpay.herokuapp.com/api"
 
+      attr_reader :username, :apikey
+
+      def initialize(credentials)
+        @username = credentials[:username]
+        @apikey = credentials[:apikey]
+      end
+
       def create_payment(value, recipient_id, recipient_name)
         url = "#{BASE_URL}/payments"
         body = {payment: {amount: value, currency: "GBP", recipient_id: recipient_id}}.to_json
@@ -73,7 +80,7 @@ module Fakebook
       end
 
       def token
-        login("arthur", "68830AEF4DBFAD18")[:token]
+        login(username, apikey)[:token]
       end
 
       def login(username, apikey)

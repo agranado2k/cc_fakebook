@@ -5,7 +5,8 @@ class CoolPayTest < Minitest::Test
   include ::APIGatewateyInterfaceTest
 
   def setup
-    @cool_pay = @object = Fakebook::Gateway::CoolPay.new
+    credentials = {username: "arthur", apikey: "68830AEF4DBFAD18"}
+    @cool_pay = @object = Fakebook::Gateway::CoolPay.new(credentials)
   end
 
   def test_symbolize_keys_with_nested_hash
