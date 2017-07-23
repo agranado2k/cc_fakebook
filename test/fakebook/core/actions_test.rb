@@ -1,5 +1,5 @@
 require "test_helper"
-require "fakebook_gateway_api_gateway_interface_test"
+require "fakebook/gateway/api_gateway_interface_test"
 
 class APIGatewayDouble
   def create_payment(recipient, value)

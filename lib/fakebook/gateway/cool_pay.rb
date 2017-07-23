@@ -26,6 +26,13 @@ module Fakebook
         }
       end
 
+      def list_payments
+        url = "#{BASE_URL}/payments"
+        response = RestClient.get(url, headers)
+        body = parse_response(response.body)
+        body[:payments]
+      end
+
       def get_or_create_recipient(name)
         response = get_recipient(name)
       rescue RecipientNotFound
@@ -59,10 +66,6 @@ module Fakebook
 
       def select_recipeint_by_name(response, name)
         response[:recipients].select{|r| r[:name] == name}.first
-      end
-
-      def list_payments
-
       end
 
       def headers

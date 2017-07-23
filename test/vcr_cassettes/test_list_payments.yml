@@ -1,0 +1,97 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://coolpay.herokuapp.com/api/login
+    body:
+      encoding: UTF-8
+      string: '{"username":"arthur","apikey":"68830AEF4DBFAD18"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '49'
+      Host:
+      - coolpay.herokuapp.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - Cowboy
+      Date:
+      - Sun, 23 Jul 2017 21:20:22 GMT
+      Content-Length:
+      - '48'
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Request-Id:
+      - 6a38afa8-a27c-44f3-9d00-fa5d00db7b36
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: '{"token":"118e2b6b-5704-4e1f-b05a-7b36b8eff4d5"}'
+    http_version: 
+  recorded_at: Sun, 23 Jul 2017 21:20:23 GMT
+- request:
+    method: get
+    uri: https://coolpay.herokuapp.com/api/payments
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - rest-client/2.0.2 (linux-gnu x86_64) ruby/2.4.1p111
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer 118e2b6b-5704-4e1f-b05a-7b36b8eff4d5
+      Host:
+      - coolpay.herokuapp.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - Cowboy
+      Date:
+      - Sun, 23 Jul 2017 21:20:23 GMT
+      Content-Length:
+      - '768'
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Request-Id:
+      - 60664a32-9971-42d2-a1e7-713859ca7829
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: '{"payments":[{"status":"paid","recipient_id":"20d411b7-7e12-4e45-b9d4-e390b492958a","id":"81791d52-e109-4d9b-b121-5ea1eeaa1f46","currency":"GBP","amount":"12.56"},{"status":"failed","recipient_id":"20d411b7-7e12-4e45-b9d4-e390b492958a","id":"c6219d09-0b69-4997-b5ff-fea87b291132","currency":"GBP","amount":"12.56"},{"status":"paid","recipient_id":"20d411b7-7e12-4e45-b9d4-e390b492958a","id":"6d7f727a-682c-4bd9-8d48-ce26cbb3ec4d","currency":"GBP","amount":"12.56"},{"status":"paid","recipient_id":"20d411b7-7e12-4e45-b9d4-e390b492958a","id":"56927ed0-54f1-4f2f-ae14-79b140dbb98b","currency":"GBP","amount":"12.56"},{"status":"failed","recipient_id":"20d411b7-7e12-4e45-b9d4-e390b492958a","id":"0b1b254f-edfb-4ecf-b4f3-e44abdc3eae2","currency":"GBP","amount":"12.56"}]}'
+    http_version: 
+  recorded_at: Sun, 23 Jul 2017 21:20:24 GMT
+recorded_with: VCR 3.0.3

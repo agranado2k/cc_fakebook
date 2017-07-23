@@ -1,5 +1,5 @@
 require "test_helper"
-require "fakebook_gateway_api_gateway_interface_test"
+require "fakebook/gateway/api_gateway_interface_test"
 
 class CoolPayTest < Minitest::Test
   include ::APIGatewateyInterfaceTest
@@ -86,5 +86,15 @@ class CoolPayTest < Minitest::Test
     assert_equal "get_api_test", response[:success][:recipient]
     refute_nil response[:success][:external_payment_id]
     refute_nil response[:success][:external_recipient_id]
+  end
+
+  def test_list_payments
+    response = nil
+    VCR.use_cassette("test_list_payments") do
+      response = @cool_pay.list_payments
+    end
+
+    assert_operator response.size, :>, 1
+    assert_equal response.first[:id], "81791d52-e109-4d9b-b121-5ea1eeaa1f46"
   end
 end
