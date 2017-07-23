@@ -36,7 +36,7 @@ class CoolPayTest < Minitest::Test
   def test_get_recipient_by_name_with_success
     username = "get_api_test"
 
-    response = @cool_pay.get_or_create_recipient(username)
+    response = @cool_pay.get_recipient(username)
 
     refute_nil response[:success]
     refute_nil response[:success][:external_recipient_id]
@@ -44,11 +44,21 @@ class CoolPayTest < Minitest::Test
   end
 
   def test_get_recipient_by_name_with_fail
-    #username = "unknown_name"
+    username = "unknown_name"
 
-    #assert_raise RecipientNotFound do
-      #@cool_pay.get_or_create_recipient(username)
-    #end
+    assert_raises Fakebook::Gateway::RecipientNotFound do
+      @cool_pay.get_recipient(username)
+    end
+  end
+
+  def test_create_recipient_with_success
+    username = "some_name-#{SecureRandom.hex}"
+
+    response = @cool_pay.create_recipient(username)
+
+    refute_nil response[:success]
+    refute_nil response[:success][:external_recipient_id]
+    assert_equal username, response[:success][:recipient_name]
   end
 
   def test_create_payment_with_success

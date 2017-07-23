@@ -1,5 +1,9 @@
 module Fakebook
   module Gateway
+
+    class RecipientNotFound < RuntimeError
+    end
+
     class CoolPay
       def create_payment
 
@@ -7,16 +11,30 @@ module Fakebook
 
       def get_or_create_recipient(name)
         response = get_recipient(name)
-
+      rescue RecipientNotFound
+        response = create_recipient(name)
+      ensure
         response
       end
 
       def get_recipient(name)
         token = login("arthur", "68830AEF4DBFAD18")[:token]
         url = "https://coolpay.herokuapp.com/api/recipients?name=#{name}"
-        response = RestClient.get(url, headers={"Content-Type" => "application/json",
-                                     Authorization: "Bearer #{token}"})
-        create_recipient_response(select_recipeint_by_name(parse_response(response.body), name))
+        headers =  {content_type: :json, accept: :json, Authorization: "Bearer #{token}"}
+        response = RestClient.get(url, headers)
+        body = parse_response(response.body)
+        fail RecipientNotFound if body[:recipients].empty?
+        create_recipient_response(select_recipeint_by_name(body, name))
+      end
+
+      def create_recipient(name)
+        token = login("arthur", "68830AEF4DBFAD18")[:token]
+        url = "https://coolpay.herokuapp.com/api/recipients?name=#{name}"
+        body = {recipient: {name: name}}
+        headers =  {content_type: :json, accept: :json, Authorization: "Bearer #{token}"}
+        response = RestClient.post(url, body, headers)
+        body = parse_response(response.body)
+        create_recipient_response(body[:recipient])
       end
 
       def create_recipient_response(body)
