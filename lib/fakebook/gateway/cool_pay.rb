@@ -5,13 +5,17 @@ module Fakebook
     end
 
     class CoolPay
+      BASE_URL = "https://coolpay.herokuapp.com/api"
+
       def create_payment(value, recipient_id, recipient_name)
-        token = login("arthur", "68830AEF4DBFAD18")[:token]
-        url = "https://coolpay.herokuapp.com/api/payments"
+        url = "#{BASE_URL}/payments"
         body = {payment: {amount: value, currency: "GBP", recipient_id: recipient_id}}.to_json
-        headers =  {content_type: :json, accept: :json, Authorization: "Bearer #{token}"}
         response = RestClient.post(url, body, headers)
         body = parse_response(response.body)
+        create_payment_response(body, recipient_name)
+      end
+
+      def create_payment_response(body, recipient_name)
         {
           success: {
             value: body[:payment][:amount],
@@ -31,9 +35,7 @@ module Fakebook
       end
 
       def get_recipient(name)
-        token = login("arthur", "68830AEF4DBFAD18")[:token]
-        url = "https://coolpay.herokuapp.com/api/recipients?name=#{name}"
-        headers =  {content_type: :json, accept: :json, Authorization: "Bearer #{token}"}
+        url = "#{BASE_URL}/recipients?name=#{name}"
         response = RestClient.get(url, headers)
         body = parse_response(response.body)
         fail RecipientNotFound if body[:recipients].empty?
@@ -41,10 +43,8 @@ module Fakebook
       end
 
       def create_recipient(name)
-        token = login("arthur", "68830AEF4DBFAD18")[:token]
-        url = "https://coolpay.herokuapp.com/api/recipients"
+        url = "#{BASE_URL}/recipients"
         body = {recipient: {name: name}}.to_json
-        headers =  {content_type: :json, accept: :json, Authorization: "Bearer #{token}"}
         response = RestClient.post(url, body, headers)
         body = parse_response(response.body)
         create_recipient_response(body[:recipient])
@@ -65,8 +65,16 @@ module Fakebook
 
       end
 
+      def headers
+        {content_type: :json, accept: :json, Authorization: "Bearer #{token}"}
+      end
+
+      def token
+        login("arthur", "68830AEF4DBFAD18")[:token]
+      end
+
       def login(username, apikey)
-        url = "https://coolpay.herokuapp.com/api/login"
+        url = "#{BASE_URL}/login"
         body = {username: username, apikey: apikey}.to_json
         headers =  {content_type: :json, accept: :json}
         response = RestClient.post(url, body, headers)
