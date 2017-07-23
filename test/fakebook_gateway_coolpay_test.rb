@@ -16,12 +16,12 @@ class CoolPayTest < Minitest::Test
     assert_equal result, {a: {b: "c"}}
   end
 
-  def teste_symbolize_keys_with_array
-    json = [{"a" => {"b" => "c"}}]
+  def test_symbolize_keys_with_array
+    json = {"a" => [{"b" => "c"}]}
 
     result = @cool_pay.symbolize_keys(json)
 
-    assert_equal result, [{a: {b: "c"}}]
+    assert_equal result, {a: [{b: "c"}]}
   end
 
   def test_get_auth_token_from_login
@@ -41,6 +41,14 @@ class CoolPayTest < Minitest::Test
     refute_nil response[:success]
     refute_nil response[:success][:external_recipient_id]
     assert_equal "get_api_test", response[:success][:recipient_name]
+  end
+
+  def test_get_recipient_by_name_with_fail
+    #username = "unknown_name"
+
+    #assert_raise RecipientNotFound do
+      #@cool_pay.get_or_create_recipient(username)
+    #end
   end
 
   def test_create_payment_with_success
