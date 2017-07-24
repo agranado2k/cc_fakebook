@@ -60,6 +60,15 @@ class CoolPayTest < Minitest::Test
     end
   end
 
+  def test_list_all_recipients
+    response = nil
+    VCR.use_cassette("test_list_all_recipients") do
+      response =  @cool_pay.list_recipients
+    end
+
+    assert_operator response.size, :>, 1
+  end
+
   def test_create_recipient_with_success
     username = "some_name-#{SecureRandom.hex}"
     response = nil
@@ -90,6 +99,7 @@ class CoolPayTest < Minitest::Test
   end
 
   def test_list_payments
+    skip
     response = nil
     VCR.use_cassette("test_list_payments") do
       response = @cool_pay.list_payments
@@ -97,5 +107,6 @@ class CoolPayTest < Minitest::Test
 
     assert_operator response.size, :>, 1
     assert_equal response.first[:id], "81791d52-e109-4d9b-b121-5ea1eeaa1f46"
+    assert_equal response.first[:recipient], "get_api_test"
   end
 end

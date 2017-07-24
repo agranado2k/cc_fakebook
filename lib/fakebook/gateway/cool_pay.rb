@@ -56,6 +56,13 @@ module Fakebook
         create_recipient_response(select_recipeint_by_name(body, name))
       end
 
+      def list_recipients
+        url = "#{BASE_URL}/recipients"
+        response = RestClient.get(url, headers)
+        body = parse_response(response.body)
+        body[:recipients]
+      end
+
       def create_recipient(name)
         url = "#{BASE_URL}/recipients"
         body = {recipient: {name: name}}.to_json
