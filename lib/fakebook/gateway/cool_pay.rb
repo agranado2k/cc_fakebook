@@ -37,7 +37,12 @@ module Fakebook
         url = "#{BASE_URL}/payments"
         response = RestClient.get(url, headers)
         body = parse_response(response.body)
-        body[:payments]
+        recipients =  list_recipients
+        body[:payments].map do |p|
+          rs = get_recipient_by_id(p[:recipient_id], recipients)
+          p[:recipient] = rs[:name]
+          p
+        end
       end
 
       def get_or_create_recipient(name)
@@ -54,6 +59,10 @@ module Fakebook
         body = parse_response(response.body)
         fail RecipientNotFound if body[:recipients].empty?
         create_recipient_response(select_recipeint_by_name(body, name))
+      end
+
+      def get_recipient_by_id(id, recipients)
+        recipients.select{|r| r[:id] == id}.first
       end
 
       def list_recipients
