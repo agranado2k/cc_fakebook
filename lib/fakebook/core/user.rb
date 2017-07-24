@@ -3,7 +3,7 @@ module Fakebook
     class User
       attr_accessor :username, :friends, :mapper
 
-      def initialize(args, mapper)
+      def initialize(args, mapper=nil)
         @username = args[:username]
         @friends = create_friend_list(args[:friends])
         @payments = args[:payments] || []
