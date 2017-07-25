@@ -45,6 +45,10 @@ module Fakebook
         end
       end
 
+      def get_recipient_by_id(id, recipients)
+        recipients.select{|r| r[:id] == id}.first
+      end
+
       def get_or_create_recipient(name)
         response = get_recipient(name)
       rescue RecipientNotFound
@@ -61,8 +65,8 @@ module Fakebook
         create_recipient_response(select_recipeint_by_name(body, name))
       end
 
-      def get_recipient_by_id(id, recipients)
-        recipients.select{|r| r[:id] == id}.first
+      def select_recipeint_by_name(response, name)
+        response[:recipients].select{|r| r[:name] == name}.first
       end
 
       def list_recipients
@@ -85,10 +89,6 @@ module Fakebook
           recipient_name: body[:name],
           external_recipient_id: body[:id]
         }}
-      end
-
-      def select_recipeint_by_name(response, name)
-        response[:recipients].select{|r| r[:name] == name}.first
       end
 
       def headers
