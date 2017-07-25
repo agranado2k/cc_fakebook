@@ -82,6 +82,19 @@ class CoolPayTest < Minitest::Test
     refute_nil username, response[:success][:recipient_name]
   end
 
+  def test_get_or_create_recipient_with_success
+    username = "get_api_test"
+    response = nil
+
+    VCR.use_cassette("test_get_or_create_recipient_with_success") do
+      response = @cool_pay.get_or_create_recipient(username)
+    end
+
+    refute_nil response[:success]
+    refute_nil response[:success][:external_recipient_id]
+    assert_equal "get_api_test", response[:success][:recipient_name]
+  end
+
   def test_create_payment_with_success
     value = 12.56
     recipient_name = "get_api_test"
