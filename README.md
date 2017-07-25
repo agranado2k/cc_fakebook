@@ -1,3 +1,6 @@
+[![Build
+Status](https://travis-ci.org/agranado2k/cc_fakebook.svg?branch=master)](https://travis-ci.org/agranado2k/cc_fakebook)
+
 # Scenario
 
 Coolpay is a new company that allows to easily send money to friends
