@@ -92,7 +92,7 @@ module Fakebook
       end
 
       def headers
-        {content_type: :json, accept: :json, Authorization: "Bearer #{token}"}
+        base_headers.merge({Authorization: "Bearer #{token}"})
       end
 
       def token
@@ -102,9 +102,12 @@ module Fakebook
       def login(username, apikey)
         url = "#{BASE_URL}/login"
         body = {username: username, apikey: apikey}.to_json
-        headers =  {content_type: :json, accept: :json}
-        response = RestClient.post(url, body, headers)
+        response = RestClient.post(url, body, base_headers)
         parse_response(response.body)
+      end
+
+      def base_headers
+        {content_type: :json, accept: :json}
       end
 
       def parse_response(body)
